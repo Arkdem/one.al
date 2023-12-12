@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Two Column Layout</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap; /* Allow columns to wrap on smaller screens */
+            height: 100vh;
+        }
+
+        .column-60 {
+            flex: 0 0 60%;
+            background-color: #662e8f;
+            color: #ffffff;
+            padding: 2%; /* Use percentage for padding */
+            box-sizing: border-box; /* Include padding in total width */
+            position: relative;
+        }
+
+        .column-40 {
+            flex: 0 0 40%;
+            background-color: #f5b01a;
+            color: #662e8f;
+            padding: 2%; /* Use percentage for padding */
+            box-sizing: border-box; /* Include padding in total width */
+            position: relative;
+        }
+
+        h1, .column-60 h1, .column-40 h1 {
+            font-size: 50px; /* Set font size in pixels */
+            margin-bottom: 10px; /* Use relative units for better vertical alignment */
+        }
+
+        .column-40 h1 {
+            font-weight: 700;
+        }
+
+        .column-40 p {
+            font-weight: 600;
+            margin-top: 2%; /* Use percentage for margin */
+        }
+
+        .column-40 ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 2%; /* Use percentage for margin */
+        }
+
+        .column-40 li {
+            margin-bottom: 2%; /* Use percentage for margin */
+            font-size: px; /* Set font size in pixels */
+            font-weight: bold; /* Set font weight to bold */
+            color: #ffffff; /* Set text color to white */
+            line-height: 150%; /* Use percentage for line height for better vertical alignment */
+            position: relative; /* Set position to relative for positioning the circle */
+        }
+
+        .progress-bar {
+            position: relative; /* Set position to relative for positioning the circle handle */
+            width: 100%; /* Set the width of the progress bar */
+            height: 20px; /* Set the height of the progress bar */
+            background-color: #f5b01a; /* Set the background color of the progress bar */
+            border-radius: 5px; /* Add rounded corners to the progress bar */
+            overflow: hidden; /* Hide overflowing content within the progress bar */
+        }
+
+        .progress-bar-value {
+            width: 50%; /* Set the initial width of the progress bar value (adjust as needed) */
+            height: 100%; /* Set the height of the progress bar value */
+            background-color: #000000; /* Set the color of the progress bar value */
+        }
+
+        .circle-container {
+            position: absolute; /* Set position to absolute for precise positioning */
+            top: 50%; /* Position from the middle of the parent container */
+            left: 0; /* Start from the left edge of the progress bar */
+            transform: translate(0, -50%); /* Center the circle vertically */
+            width: 20px; /* Set the width of the circle handle container */
+            height: 100%; /* Set the height to match the progress bar height */
+            pointer-events: none; /* Ensure the circle container doesn't interfere with dragging */
+        }
+
+        .circle-handle {
+            width: 20px; /* Set the width of the circle handle */
+            height: 20px; /* Set the height of the circle handle */
+            background-color: #4caf50; /* Set the color of the circle handle */
+            border-radius: 50%; /* Create a circular shape */
+            position: absolute; /* Set position to absolute for precise positioning */
+            top: 0; /* Position from the top edge of the circle container */
+            left: 50%; /* Center the circle horizontally within the container */
+            transform: translateX(-50%); /* Center the circle horizontally */
+            cursor: ew-resize; /* Set cursor to ew-resize for horizontal resizing */
+        }
+
+        .background-image {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%; /* Make the image fill the full width of the column */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        /* Add responsive styles for smaller screens */
+        @media (max-width: 768px) {
+            .column-60, .column-40 {
+                flex: 0 0 100%; /* Full width on smaller screens */
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap">
+</head>
+<body>
+    <div class="container">
+        <div class="column-60">
+            <h1>Miresevini ne ONE.al</h1>
+            <p>Rubrika e krijimit te paketes personale vetem per klientet tane.</p>
+            <img src="https://via.placeholder.com/1920x200" alt="Background Image" class="background-image">
+        </div>
+        <div class="column-40">
+            <h1>Krijo paketen personale</h1>
+            <p>Ne seksionin e meposhtem mund te krijoni paketen sipas deshires personale duke zgjedhur kapacitetin per cdo njesi</p>
+            <ul>
+                <li>Minuta Kombetare
+                    <div class="progress-bar">
+                        <input type="range" min="0" max="100" value="50" class="progress-range" />
+                        <div class="progress-bar-value" style="width: 50%;"></div>
+                        <div class="circle-container">
+                            <div class="circle-handle"></div>
+                        </div>
+                    </div>
+                </li>
+                <li>List item 2
+                    <div class="progress-bar">
+                        <input type="range" min="0" max="100" value="40" class="progress-range" />
+                        <div class="progress-bar-value" style="width: 40%;"></div>
+                        <div class="circle-container">
+                            <div class="circle-handle"></div>
+                        </div>
+                    </div>
+                </li>
+                <li>List item 3
+                    <div class="progress-bar">
+                        <input type="range" min="0" max="100" value="60" class="progress-range" />
+                        <div class="progress-bar-value" style="width: 60%;"></div>
+                        <div class="circle-container">
+                            <div class="circle-handle"></div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Add JavaScript for handling range input changes
+        document.addEventListener('input', function (event) {
+            if (event.target.classList.contains('progress-range')) {
+                const progressBar = event.target.parentElement.querySelector('.progress-bar-value');
+                const circleHandle = event.target.parentElement.querySelector('.circle-handle');
+                const value = event.target.value;
+                progressBar.style.width = value + '%';
+                circleHandle.style.left = value + '%';
+            }
+        });
+    </script>
+</body>
+</html>

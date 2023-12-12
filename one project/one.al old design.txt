@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Column Layout</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .column-60 {
+            flex: 0 0 60%;
+            background-color: #662e8f;
+            color: #ffffff;
+            padding: 20px;
+        }
+
+        .column-40 {
+            flex: 0 0 40%;
+            background-color: #f5b01a;
+            color: #662e8f;
+            padding: 20px;
+        }
+
+        h1, .column-60 h1 {
+            font-size: 3em;
+        }
+
+        .column-40 h1 {
+            font-size: 3em;
+            font-weight: 700;
+        }
+
+        .column-40 p {
+            font-weight: 900; /* Set font weight for <p> element in the second column */
+            margin-top: 30px; /* Adjust the margin-top to move the text down */
+       
+        }
+        .column-40 ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px; /* Adjust the margin-top for spacing */
+        }
+
+        .column-40 li {
+            margin-bottom: 5px; /* Adjust the margin-bottom for spacing between list items */
+            font-size: 1.5em; /* Increase font size */
+            font-weight: bold; /* Set font weight to bold */
+            color: #ffffff; /* Set text color to white */
+            vertical-align: middle; /* Align text vertically centered */
+            line-height: 55px; /* Set line height in pixels for vertical alignment */
+        }
+
+        .progress-bar {
+            width: 80%; /* Set the width of the progress bar */
+            height: 20px; /* Set the height of the progress bar */
+            background-color: #662e8f; /* Set the background color of the progress bar */
+            border-radius: 5px; /* Add rounded corners to the progress bar */
+            overflow: hidden; /* Hide overflowing content within the progress bar */
+        }
+
+        .progress-bar-value {
+            width: 50%; /* Set the initial width of the progress bar value (adjust as needed) */
+            height: 100%; /* Set the height of the progress bar value */
+            background-color: #252525; /* Set the color of the progress bar value */
+        }
+
+        .circle-container {
+            position: absolute; /* Set position to absolute for precise positioning */
+            top: 50%; /* Position from the middle of the parent container */
+            left: 50; /* Start from the left edge of the progress bar */
+            transform: translate(0, -50%); /* Center the circle vertically */
+            width: 20px; /* Set the width of the circle handle container */
+            height: 100%; /* Set the height to match the progress bar height */
+            pointer-events: none; /* Ensure the circle container doesn't interfere with dragging */
+        }
+
+        .circle-handle {
+            width: 20px; /* Set the width of the circle handle */
+            height: 20px; /* Set the height of the circle handle */
+            background-color: #0a0a0a; /* Set the color of the circle handle */
+            border-radius: 50%; /* Create a circular shape */
+            position: absolute; /* Set position to absolute for precise positioning */
+            top: 50%; /* Position from the middle of the parent container */
+            left: 50%; /* Position from the middle of the parent container */
+            transform: translate(-50%, -50%); /* Center the circle vertically and horizontally */
+            cursor: ew-resize; /* Set cursor to ew-resize for horizontal resizing */
+        }
+
+        .background-image {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60%;
+            height: auto; /* Adjust the height as needed */
+            max-height: 500px; /* Limit the max height to keep it visible */
+            object-fit: cover; /* Maintain the aspect ratio and cover the container */
+        }
+
+
+        /* Add responsive styles for smaller screens */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .column-60, .column-40 {
+                flex: 0 0 100%;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap">
+</head>
+<body>
+    <div class="container">
+        <div class="column-60">
+            <h1>Miresevini ne ONE.al</h1>
+            <p>Rubrika e krijimit te paketes personale vetem per klientet tane.</p>
+            <img src="/images/ONE Daily Business Eng.jpeg" alt="Background Image" class="background-image">
+        </div>
+        <div class="column-40">
+            <h1>Krijo paketen personale</h1>
+            <p>Ne seksionin e meposhtem mund te krijoni paketen sipas deshires personale duke zgjedhur kapacitetin per cdo njesi
+            </p>
+            <ul>
+                <li>MInuta Kombetare
+                <div class="progress-bar">
+                    <div class="progress-bar-value" style="width: 20%;"></div>
+                </div>
+                </li>
+                <li>Minuta Nderkombetare
+                    <div class="progress-bar">
+                    <div class="progress-bar-value" style="width: 20%;"></div>
+                    <!--<div class="circle-handle"></div> shikoje se eshte per circle controll --> 
+                </div>
+                </li>
+                <li>SMS Kombetare
+                    <div class="progress-bar">
+                    <div class="progress-bar-value" style="width: 20%;"></div>
+                </div>
+                </li>
+                <li>SMS Nderkombetare
+                    <div class="progress-bar">
+                    <div class="progress-bar-value" style="width: 20%;"></div>
+                </div>
+                </li>
+                <li>Internet
+                    <div class="progress-bar">
+                    <div class="progress-bar-value" style="width: 20%;"></div>
+                </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
